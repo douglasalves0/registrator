@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { Provider } from "./entity/provider";
 import env from "./config/env";
 
 export const AppDataSource = new DataSource({
@@ -11,6 +12,8 @@ export const AppDataSource = new DataSource({
     
     synchronize: false,
     type: "postgres",
-    logging: false
+    logging: false,
+
+    entities: [Provider]
 
 });

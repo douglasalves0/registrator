@@ -6,9 +6,9 @@
 		"allowJs": true,
 		"outDir": "dist",
 		"esModuleInterop": true,
-		"strict": true,
+		"strict": false,
 		"skipLibCheck": true,
-		"emitDecoratorMetadata": true,        /*    Needed to typeorm works properly   */
+		"emitDecoratorMetadata": true,        /*    Needed to typeorm works properly    */
 		"experimentalDecorators": true        /*    Needed to typeorm works properly    */
 	}
 }
