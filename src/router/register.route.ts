@@ -4,10 +4,11 @@ import { RegisterDto } from "../types/register.dto";
 import { RequestValidator } from "../validators/request.validator";
 import { RecaptchaResponse } from "../types/recaptcha.response";
 import { RecaptchaConsumer } from "../api/recaptcha.consumer";
-import env from "./../config/env";
-import email from "email-validator";
 import { ProviderRepository } from "../repositories/provider.repository";
 import { ProviderDto } from "../types/provider.dto";
+import { EmailSenderConsumer } from "../api/email.sender.consumer";
+import email from "email-validator";
+import env from "./../config/env";
 
 const registerRouter: Router = Router();
 
@@ -75,7 +76,32 @@ registerRouter.post('/', async (request: Request, response: Response) => {
         return;
     }
 
-    // Envia email para o usuário
+    const info: string = 
+    "--- Requisição de registro de usuário ---" + 
+    `Nome: ${body.name}` + 
+    `Foto: ${body.avatarUrl}` + 
+    `CPF: ${body.cpf}` + 
+    `Foto do CPF: ${body.cpfPhotoUrl}` +
+    `Foto selfie com o CPF: ${body.cpfSelfiePhotoUrl}` + 
+    `Descrição do prestador: ${body.description}` + 
+    `Email do prestador: ${body.email}` + 
+    `Sexo: ${body.gender}` + 
+    `Número de telefone: ${body.phoneNumber}` + 
+    `Especialidade: ${body.specialty}`;
+
+    try{
+        await EmailSenderConsumer.send(
+            env.NAIL_PLANNER_EMAIL,
+            `[Nail Planner] - User registration request - ${body.name}`,
+            info
+        );
+    }catch(e){
+        response.status(500);
+        response.send({
+            info: "Some error ocurred while trying to send email to nailplanner",
+        });
+        return;
+    }
 
     response.status(200);
     response.send({
