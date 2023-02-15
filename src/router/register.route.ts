@@ -2,9 +2,12 @@ import { Router } from "express";
 import { Request, Response } from "express";
 import { RegisterDto } from "../types/register.dto";
 import { RequestValidator } from "../validators/request.validator";
-import env from "./../config/env";
 import { RecaptchaResponse } from "../types/recaptcha.response";
 import { RecaptchaConsumer } from "../api/recaptcha.consumer";
+import env from "./../config/env";
+import email from "email-validator";
+import { ProviderRepository } from "../repositories/provider.repository";
+import { ProviderDto } from "../types/provider.dto";
 
 const registerRouter: Router = Router();
 
@@ -18,6 +21,14 @@ registerRouter.post('/', async (request: Request, response: Response) => {
         response.send({
             info: "invalid body",
             errors: bodyErrors
+        });
+        return;
+    }
+
+    if(!email.validate(body.email)){
+        response.status(400);
+        response.send({
+            info: "invalid e-mail"
         });
         return;
     }
@@ -41,7 +52,30 @@ registerRouter.post('/', async (request: Request, response: Response) => {
         return;
     }
 
-    //Persiste no banco e chama o email-sender
+    const provider: ProviderDto = {
+        avatarUrl: body.avatarUrl,
+        cpf: body.cpf,
+        description: body.description,
+        email: body.email,
+        gender: body.gender,
+        name: body.name,
+        password: body.password,
+        phoneNumber: body.phoneNumber,
+        specialty: body.specialty,
+        profileApproved: false
+    };
+
+    try{
+        await ProviderRepository.save(provider);
+    }catch(e){
+        response.status(500);
+        response.send({
+            info: "Some error ocurred while trying to persist data on database",
+        });
+        return;
+    }
+
+    // Envia email para o usuário
 
     response.status(200);
     response.send({
