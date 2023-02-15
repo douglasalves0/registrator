@@ -16,7 +16,7 @@ registerRouter.post('/', async (request: Request, response: Response) => {
 
     const body: RegisterDto = request.body;
     const bodyErrors: string[] = RequestValidator.validateRegisterBody(body);
-    
+
     if(bodyErrors.length > 0){
         response.status(400);
         response.send({
@@ -77,17 +77,17 @@ registerRouter.post('/', async (request: Request, response: Response) => {
     }
 
     const info: string = 
-    "--- Requisição de registro de usuário ---" + 
-    `Nome: ${body.name}` + 
-    `Foto: ${body.avatarUrl}` + 
-    `CPF: ${body.cpf}` + 
-    `Foto do CPF: ${body.cpfPhotoUrl}` +
-    `Foto selfie com o CPF: ${body.cpfSelfiePhotoUrl}` + 
-    `Descrição do prestador: ${body.description}` + 
-    `Email do prestador: ${body.email}` + 
-    `Sexo: ${body.gender}` + 
-    `Número de telefone: ${body.phoneNumber}` + 
-    `Especialidade: ${body.specialty}`;
+    "--- Requisição de registro de usuário ---\n" + 
+    `Nome: ${body.name}\n` + 
+    `Foto: ${body.avatarUrl}\n` + 
+    `CPF: ${body.cpf}\n` + 
+    `Foto do CPF: ${body.cpfPhotoUrl}\n` +
+    `Foto selfie com o CPF: ${body.cpfSelfiePhotoUrl}\n` + 
+    `Descrição do prestador: ${body.description}\n` + 
+    `Email do prestador: ${body.email}\n` + 
+    `Sexo: ${body.gender}\n` + 
+    `Número de telefone: ${body.phoneNumber}\n` + 
+    `Especialidade: ${body.specialty}\n`;
 
     try{
         await EmailSenderConsumer.send(

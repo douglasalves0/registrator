@@ -3,34 +3,34 @@ import { Entity, Column, PrimaryColumn } from "typeorm";
 @Entity({ name: "provider" })
 export class Provider{
 
-    @PrimaryColumn("cpf")
+    @PrimaryColumn({ name: "cpf", type: "varchar", nullable: false })
     cpf: string;
 
-    @Column("name")
+    @Column({ name: "name", type: "varchar", nullable: true })
     name: string;
 
-    @Column("email")
+    @Column({ name: "email", type: "varchar", nullable: true })
     email: string;
 
-    @Column("password")
+    @Column({ name: "password", type: "varchar", nullable: true })
     password: string;
 
-    @Column("gender")
+    @Column({ name: "gender", type: "varchar", nullable: true })
     gender: string;
 
-    @Column("description")
+    @Column({ name: "description", type: "varchar", nullable: true })
     description: string;
 
-    @Column("avatar_url")
+    @Column({ name: "avatar_url", type: "varchar", nullable: true })
     avatarUrl: string;
 
-    @Column("specialty")
+    @Column({ name: "specialty", type: "varchar", nullable: true })
     specialty: string;
 
-    @Column("phone_number")
+    @Column({ name: "phone_number", type: "varchar", nullable: true })
     phoneNumber: string;
 
-    @Column("profile_approved")
+    @Column({ name: "profile_approved", type: "boolean", nullable: true })
     profileApproved: boolean;
 
 };

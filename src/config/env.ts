@@ -20,7 +20,7 @@ export default {
 
     URL: {
         RECAPTCHA_VALIDATION: "https://www.google.com/recaptcha/api/siteverify",
-        EMAIL_SENDER: "localhost:3333/email"
+        EMAIL_SENDER: "http://localhost:3333/email"
     }
 
 };

@@ -10,7 +10,7 @@ export class ProviderRepository{
         createQueryBuilder().
         insert().
         into(Provider).
-        values(provider).
+        values([provider]).
         execute();
     }
 
