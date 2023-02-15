@@ -11,5 +11,12 @@ export default {
         PASS: e.DB_PASS,
         NAME: e.DB_NAME,
         PORT: Number(e.DB_PORT)
+    },
+
+    RECAPTCHA_SECRET_KEY: e.RECAPTCHA_SECRET_KEY,
+
+    URL: {
+        RECAPTCHA_VALIDATION: "https://www.google.com/recaptcha/api/siteverify"
     }
+
 };
