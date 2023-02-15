@@ -16,6 +16,7 @@ export default {
     RECAPTCHA_SECRET_KEY: e.RECAPTCHA_SECRET_KEY,
     EMAIL_SENDER_SECRET: e.EMAIL_SENDER_SECRET,
     NAIL_PLANNER_EMAIL: e.NAIL_PLANNER_EMAIL,
+    APP_PORT: Number(e.APP_PORT),
 
     URL: {
         RECAPTCHA_VALIDATION: "https://www.google.com/recaptcha/api/siteverify",
