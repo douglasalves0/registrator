@@ -4,7 +4,7 @@ import { RequestValidator } from "../../validators/request.validator";
 import { ProviderRepository } from "../../repositories/provider.repository";
 import { ProviderDto } from "../../types/provider.dto";
 
-export async function registerAccept(request: Request, response: Response){
+export async function registerAccept(request: Request, response: Response): Promise<void>{
 
     const body: RegisterAcceptDto = request.body;
     const bodyErrors: string[] = RequestValidator.validateRegisterAcceptBody(body);
