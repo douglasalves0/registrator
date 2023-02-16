@@ -14,4 +14,23 @@ export class ProviderRepository{
         execute();
     }
 
+    public static async findByCpf(cpf: string): Promise<ProviderDto[]>{
+        return await
+        AppDataSource.
+        getRepository(Provider).
+        createQueryBuilder("provider").
+        where("provider.cpf = :cpf", {cpf: cpf}).
+        getMany();
+    }
+
+    public static async acceptProvider(cpf: string): Promise<void>{
+        await
+        AppDataSource.
+        createQueryBuilder().
+        update(Provider).
+        set({profileApproved: true}).
+        where("cpf = :cpf", {cpf: cpf}).
+        execute();
+    }
+
 };

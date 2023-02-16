@@ -1,3 +1,4 @@
+import { RegisterAcceptDto } from "../types/register.accept.dto";
 import { RegisterDto } from "../types/register.dto";
 
 export class RequestValidator{
@@ -18,6 +19,16 @@ export class RequestValidator{
         if(!(body?.phoneNumber))       errors.push("Field phoneNumber is missing");
         if(!(body?.recaptchaToken))    errors.push("Field recaptchaToken is missing");
         if(!(body?.specialty))         errors.push("Field specialty is missing");
+
+        return errors;
+
+    }
+
+    public static validateRegisterAcceptBody(body: RegisterAcceptDto): string[]{
+
+        let errors: string[] = [];
+        
+        if(!(body?.cpf)) errors.push("Field cpf is missing");
 
         return errors;
 
