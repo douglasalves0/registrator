@@ -33,4 +33,14 @@ export class ProviderRepository{
         execute();
     }
 
+    public static async rejectProvider(cpf: string): Promise<void>{
+        await
+        AppDataSource.
+        createQueryBuilder().
+        delete().
+        from(Provider).
+        where("cpf = :cpf", {cpf: cpf}).
+        execute();
+    }
+
 };

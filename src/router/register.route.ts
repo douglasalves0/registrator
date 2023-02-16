@@ -6,6 +6,6 @@ const registerRouter: Router = Router();
 
 registerRouter.post('/', register);
 registerRouter.post('/accept', registerAccept);
-registerRouter.post('/refuse');
+registerRouter.post('/reject', );
 
 export { registerRouter };
